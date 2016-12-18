@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ExpenseT.ContactListPage"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"             
+             xmlns:fe="clr-namespace:FreshEssentials;assembly=FreshEssentials"       
+             >
+
+
+  <StackLayout>
+    <Grid>
+      <Grid.RowDefinitions>
+        <RowDefinition Height="40" />
+      </Grid.RowDefinitions>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="*" />
+        <ColumnDefinition Width="*" />
+      </Grid.ColumnDefinitions>
+
+      <Entry x:Name="Name" Text="{Binding Name}" Grid.Row="0" Grid.Column="0" />
+      
+<!-- Date="{x:Static sys:DateTime.Now Binding ExpenseDate} -->
+
+      <DatePicker x:Name="ExpenseDatePicker"  VerticalOptions="CenterAndExpand" Date="{Binding ExpenseDate}" Grid.Row="0" Grid.Column="1">
+        <DatePicker.Format>yyyy-MM-dd</DatePicker.Format>
+        <DatePicker.MinimumDate>
+          <sys:DateTime x:FactoryMethod="Parse">
+            <x:Arguments>
+              <x:String>Jan 1 2016</x:String>
+            </x:Arguments>
+          </sys:DateTime>
+        </DatePicker.MinimumDate>
+        <DatePicker.MaximumDate>
+          <sys:DateTime x:FactoryMethod="Parse">
+            <x:Arguments>
+              <x:String>Dec 31 2050</x:String>
+            </x:Arguments>
+          </sys:DateTime>
+        </DatePicker.MaximumDate>
+      </DatePicker>
+
+    </Grid>
+
+    <fe:BindablePicker x:Name="PickerAccount" ItemsSource="{Binding AccountList}" SelectedItem="{Binding AccountSelected}"  ></fe:BindablePicker>  <!-- Title="Select Account" -->
+    <fe:BindablePicker x:Name="PickerCategory" ItemsSource="{Binding CategoryList}" SelectedItem="{Binding CategorySelected}" ></fe:BindablePicker>
+    <fe:BindablePicker x:Name="PickerCategory2" ItemsSource="{Binding Category2List}" SelectedItem="{Binding Category2Selected}" ></fe:BindablePicker>
+
+
+    <Grid>
+      <Grid.RowDefinitions>
+        <RowDefinition Height="50" />
+        <RowDefinition Height="50" />
+      </Grid.RowDefinitions>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="70" />
+        <ColumnDefinition Width="*" />
+      </Grid.ColumnDefinitions>
+
+      <Label Text="$"  FontSize="20" FontAttributes="Bold" HorizontalTextAlignment="End" VerticalTextAlignment="Center" Grid.Row="0" Grid.Column="0"/>
+      <Entry x:Name="Amount" Text="{Binding Amount}" Grid.Row="0" Grid.Column="1"/>
+
+      <Label Text="Comment" FontSize="15" FontAttributes="Bold" VerticalTextAlignment="Center" Grid.Row="1" Grid.Column="0"/>
+      <Entry x:Name="Description" Text="{Binding Description}" Grid.Row="1" Grid.Column="1" />
+
+    </Grid>
+
+
+    <Grid>
+      <Grid.RowDefinitions>
+        <RowDefinition Height="50" />
+      </Grid.RowDefinitions>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="*" />
+        <ColumnDefinition Width="*" />
+        <ColumnDefinition Width="*" />
+      </Grid.ColumnDefinitions>
+
+      <Button Text="Back" Command="{Binding BackCommand}" Grid.Row="0" Grid.Column="0"></Button>
+      <Button Text="Camera" Command="{Binding PhotoCommand}" Grid.Row="0" Grid.Column="1"></Button>
+      <Button Text="Save" Command="{Binding SaveCommand}" Grid.Row="0" Grid.Column="2"></Button>
+
+    </Grid>
+
+    <Image x:Name="myimage" Image.Source="{Binding ImageSource}" HeightRequest="200" WidthRequest="200"/>    
+ 
+  </StackLayout>
+  
+</ContentPage>

@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"                   
+             xmlns:fe="clr-namespace:FreshEssentials;assembly=FreshEssentials"                      
+             x:Class="ExpenseT.ExpenseItemPage"           
+             >
+
+  <ContentPage.Content>
+  <ScrollView x:Name="ScrollView">
+  <StackLayout>
+
+
+    <Grid>
+      <Grid.RowDefinitions>
+        <RowDefinition Height="40" />
+      </Grid.RowDefinitions>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="*" />
+        <ColumnDefinition Width="*" />
+      </Grid.ColumnDefinitions>
+
+      <Entry x:Name="Name" Text="{Binding Name}" Grid.Row="0" Grid.Column="0" />     
+
+      <DatePicker x:Name="ExpenseDatePicker" VerticalOptions="CenterAndExpand" Date="{Binding ExpenseDate}" Grid.Row="0" Grid.Column="1">
+        <DatePicker.Format>yyyy-MM-dd</DatePicker.Format>
+        <DatePicker.MinimumDate>
+          <sys:DateTime x:FactoryMethod="Parse">
+            <x:Arguments>
+              <x:String>Jan 1 2016</x:String>
+            </x:Arguments>
+          </sys:DateTime>
+        </DatePicker.MinimumDate>
+        <DatePicker.MaximumDate>
+          <sys:DateTime x:FactoryMethod="Parse">
+            <x:Arguments>
+              <x:String>Dec 31 2050</x:String>
+            </x:Arguments>
+          </sys:DateTime>
+        </DatePicker.MaximumDate>
+      </DatePicker>
+
+    </Grid>
+
+
+    <Grid>
+      <!-- Buttons 1 row 3 columns-->
+
+      <Grid.RowDefinitions>
+        <RowDefinition Height="50" />
+      </Grid.RowDefinitions>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="*" />
+        <ColumnDefinition Width="*" />
+        <ColumnDefinition Width="*" />
+      </Grid.ColumnDefinitions>
+
+      <fe:BindablePicker x:Name="PickerAccount" ItemsSource="{Binding AccountList}" SelectedItem="{Binding AccountSelected}"  Grid.Row="0" Grid.Column="0"></fe:BindablePicker>
+      <fe:BindablePicker x:Name="PickerCategory" ItemsSource="{Binding CategoryList}" SelectedItem="{Binding CategorySelected}"  Grid.Row="0" Grid.Column="1"></fe:BindablePicker>
+      <fe:BindablePicker x:Name="PickerCategory2" ItemsSource="{Binding Category2List}" SelectedItem="{Binding Category2Selected}"  Grid.Row="0" Grid.Column="2"></fe:BindablePicker>
+      
+
+    </Grid>
+    
+
+
+    <Grid>
+      <Grid.RowDefinitions>
+        <RowDefinition Height="50" />
+        <RowDefinition Height="50" />
+      </Grid.RowDefinitions>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="70" />
+        <ColumnDefinition Width="*" />
+      </Grid.ColumnDefinitions>
+
+      <Label Text="$"  FontSize="20" FontAttributes="Bold" HorizontalTextAlignment="End" VerticalTextAlignment="Center" Grid.Row="0" Grid.Column="0"/>
+      <Entry x:Name="Amount" Text="{Binding Amount}" Grid.Row="0" Grid.Column="1"/>
+
+      <Label Text="Comment" FontSize="15" FontAttributes="Bold" VerticalTextAlignment="Center" Grid.Row="1" Grid.Column="0"/>
+      <Entry x:Name="Description" Text="{Binding Description}" Grid.Row="1" Grid.Column="1" />
+      
+    </Grid>
+
+
+    
+    <Label x:Name="fPath" Text="{Binding fPath}"  VerticalOptions="Center" HorizontalOptions="Center" />  <!-- Full path and filename -->
+    <Image x:Name="imgReceipt" Image.Source="{Binding ImageSource}"  HeightRequest="200" WidthRequest="200"/>
+
+    <Grid>   <!-- Buttons 1 row 4 columns-->
+      
+      <Grid.RowDefinitions>
+        <RowDefinition Height="50" />
+      </Grid.RowDefinitions>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="*" />
+        <ColumnDefinition Width="*" />
+        <ColumnDefinition Width="*" />
+        <ColumnDefinition Width="*" />
+      </Grid.ColumnDefinitions>
+
+      <Button Text="Back" Command="{Binding BackCommand}" Grid.Row="0" Grid.Column="0"></Button>
+      <Button Text="Update" Command="{Binding UpdateCommand}" Grid.Row="0" Grid.Column="1"></Button>
+      <Button Text="Delete" Command="{Binding DeleteCommand}" Grid.Row="0" Grid.Column="2"></Button>
+      <Button Text="eMail" Command="{Binding eMailCommand}" Grid.Row="0" Grid.Column="3"></Button>
+      
+    </Grid>
+
+
+
+  </StackLayout>
+  </ScrollView>
+  </ContentPage.Content>
+</ContentPage>

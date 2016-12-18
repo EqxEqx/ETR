@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:ExpenseT"
+             xmlns:behaviors="clr-namespace:Behaviors;assembly=Behaviors"
+             x:Class="ExpenseT.Page2Page">
+<!--
+  <ContentPage.BindingContext>
+    <local:Page2PageModel />
+  </ContentPage.BindingContext>
+  -->
+  
+  <ContentPage.Resources>
+    <ResourceDictionary>
+      <local:SelectedItemEventArgsToSelectedItemConverter x:Key="SelectedItemConverter" />
+    </ResourceDictionary>
+  </ContentPage.Resources>
+
+  <StackLayout>
+
+    <Button Text="New Item" Command="{Binding NewItemCommand}"></Button>
+  
+    <ListView  x:Name="Page2ListView" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" IsPullToRefreshEnabled="True" ItemsSource="{Binding LVCellList}" ItemTapped="OnItemTapped" >  <!-- ItemTapped="OnItemTapped" -->
+
+      <ListView.Behaviors>
+        <behaviors:EventHandlerBehavior EventName="ItemSelected">
+          <behaviors:InvokeCommandAction Command="{Binding ItemSelectedEditCommand}" Converter="{StaticResource SelectedItemConverter}" />
+        </behaviors:EventHandlerBehavior>
+      </ListView.Behaviors>
+        
+      <ListView.ItemTemplate>
+        <DataTemplate>
+          <TextCell Text="{Binding Header}" Detail="{Binding Detail}" />
+        </DataTemplate>         
+      </ListView.ItemTemplate>
+    
+    </ListView>
+  
+
+  </StackLayout>
+</ContentPage>
