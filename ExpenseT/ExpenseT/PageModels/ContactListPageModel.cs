@@ -287,6 +287,7 @@ namespace ExpenseT
 
                     ei.ID = 0;    // 0 indicates NEW record.  INSERT.
 
+
                     int irc = App.Database.SaveItem(reverseInitValueEI.expenseItem);   // Returns DB Identity in expenseItem.ID or -1 if error
 
                     if (irc <= 0)

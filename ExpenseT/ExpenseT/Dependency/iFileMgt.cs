@@ -10,6 +10,9 @@ namespace ExpenseT
     {
         Boolean Delete(string fName);
         Boolean Rename(string fCurrent, string fRename, out string fRenameFull);
+
+        // Convert image ( jpg ) to Base64String
+        string Base64EncodeImage(string fNameImage);
     }
 }
 
