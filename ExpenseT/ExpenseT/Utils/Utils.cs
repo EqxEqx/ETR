@@ -11,7 +11,7 @@ namespace ExpenseT
     {
 
         // Convert the Image bitmap into a Base64String and store it to SQLite.
-        public static string Base64Encode(string fName)
+        public static string Base64Encode(string fName)   // jpg file
         {
 
             Image image = new Image { Source = fName };
