@@ -91,35 +91,35 @@ namespace ExpenseT
             }
         }
 
-        public string Base64EncodeImage( string fName)
-        {
-            try
-            {
+        //public string Base64EncodeImage( string fName)
+        //{
+        //    try
+        //    {
 
-                if (File.Exists(fName) == false)
-                {
-                    return ("");
-                }
+        //        if (File.Exists(fName) == false)
+        //        {
+        //            return ("");
+        //        }
 
-                Image image = Image.(fName);
-                {
-                    using (MemoryStream m = new MemoryStream())
-                    {
-                        image.Save(m, image.RawFormat);
-                        byte[] imageBytes = m.ToArray();
+        //        Image image = Image.(fName);
+        //        {
+        //            using (MemoryStream m = new MemoryStream())
+        //            {
+        //                image.Save(m, image.RawFormat);
+        //                byte[] imageBytes = m.ToArray();
 
-                        // Convert byte[] to Base64 String
-                        string base64String = Convert.ToBase64String(imageBytes);
-                        return base64String;
-                    }
-                }
+        //                // Convert byte[] to Base64 String
+        //                string base64String = Convert.ToBase64String(imageBytes);
+        //                return base64String;
+        //            }
+        //        }
 
 
-            }
-            catch( Exception ex)
-            {
-                return ("");
-            }
-        }
+        //    }
+        //    catch( Exception ex)
+        //    {
+        //        return ("");
+        //    }
+        //}
     }
 }

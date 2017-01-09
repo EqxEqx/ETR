@@ -30,7 +30,19 @@ namespace ExpenseT
             return (System.Text.Encoding.UTF8.GetString(base64EncodedBytes, 0, base64EncodedBytes.Length));
         }
 
-
+        /*
+         * xamarin forms c# display base64string image
+         * http://stackoverflow.com/questions/37080258/xamarin-show-image-from-base64-string
+         * 
+         * c# display base64string image
+         * https://www.google.com/search?q=c%23+display+base64string+image&ie=utf-8&oe=utf-8
+         * http://stackoverflow.com/questions/18827081/c-sharp-base64-string-to-jpeg-image
+         * 
+         * 
+         * 
+         * 
+         * 
+         */
 
     }
 }

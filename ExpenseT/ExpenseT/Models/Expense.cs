@@ -25,6 +25,8 @@ namespace ExpenseT
         public string fPDF { get; set; }
         public string dirfPDF { get; set; }
 
+        public string strImage64 { get; set; }
+
 
         public ExpenseItem()
         {
@@ -43,6 +45,8 @@ namespace ExpenseT
             fAlbumPath = "";
             fPath = "";
             fName = "";
+            dirfPDF = "";
+            strImage64 = "";  // Image saved in DB.  Reduces the Azure sync code.
         }
     }
 

@@ -88,8 +88,16 @@ namespace ExpenseT
                 ExpenseDate = CommonDate.Convert2DateTime(expenseItem.ExpenseDate);
                 Name = expenseItem.Name;
 
+                // TEST - Read from DB
+                //ImageSource = ImageSource.FromFile(expenseItem.fPath);
 
-                ImageSource = ImageSource.FromFile(expenseItem.fPath);
+                // TBD 1
+                string ImageBase64 = "";
+                ImageSource = ImageSource.FromStream(() => new MemoryStream(Convert.FromBase64String(ImageBase64)));
+
+
+
+
 
                 // fe:Picker
                 AccountList = Common.AccountListInit();  // Initialize Picker
