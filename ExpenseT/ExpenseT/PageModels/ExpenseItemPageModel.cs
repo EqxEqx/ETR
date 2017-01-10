@@ -88,15 +88,7 @@ namespace ExpenseT
                 ExpenseDate = CommonDate.Convert2DateTime(expenseItem.ExpenseDate);
                 Name = expenseItem.Name;
 
-                // TEST - Read from DB
-                //ImageSource = ImageSource.FromFile(expenseItem.fPath);
-
-                // TBD 1
-                string ImageBase64 = "";
-                ImageSource = ImageSource.FromStream(() => new MemoryStream(Convert.FromBase64String(ImageBase64)));
-
-
-
+                ImageSource = ImageSource.FromFile(expenseItem.fPath);
 
 
                 // fe:Picker
@@ -237,10 +229,14 @@ namespace ExpenseT
 
                     expenseItem.CreatedDate = DateTime.Now.ToString("yyyy-MM-dd");
 
+                    expenseItem.strImage64 = Utils.Base64Encode2String(expenseItem.fPath);
+
                     //expenseItem.ID > 0 indicate UPDATE
                     expenseItem.ID = App.Database.SaveItem(expenseItem);   // -1 if Error
 
-                    await CoreMethods.PopPageModel(expenseItemAction, true, true);
+                    expenseItem.strImage64 = "";    // Not needed.
+
+                   await CoreMethods.PopPageModel(expenseItemAction, true, true);
                 });
             }
         }

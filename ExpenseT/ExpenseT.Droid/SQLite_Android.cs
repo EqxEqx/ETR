@@ -23,6 +23,14 @@ namespace ExpenseT
             string documentsPath =  @"/storage/emulated/0/Android/data/ExpenseT.Droid/files"; // System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal); // Documents folder
             var path = Path.Combine(documentsPath, sqliteFilename);
 
+            /*
+             * Adding new field - strImage64. Delete DB
+             */
+
+            //DependencyService.Get<IFileMgt>().Delete(path);
+
+            //**********************************************
+
             // This is where we copy in the prepopulated database
             Console.WriteLine("documentsPath:" + documentsPath);
             Console.WriteLine("path: " + path);

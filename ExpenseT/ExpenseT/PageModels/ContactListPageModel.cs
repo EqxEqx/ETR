@@ -238,15 +238,12 @@ namespace ExpenseT
 
                         file.Dispose();
 
-                        // Test 
+
                         ImageSource = ImageSource.FromFile(ei.fPath);
 
-                        //  ImageSource = ImageSource.FromStream(() => new MemoryStream(Convert.FromBase64String(str64)));
-                        
-
-
-                        string str64 = Utils.Base64Encode2String(ei.fPath);
-                        ImageSource = Utils.Base64Decode2ImageSource(str64);
+                        // Test - Conversions to String64 and back to Image
+                        //string str64 = Utils.Base64Encode2String(ei.fPath);
+                        //ImageSource = Utils.Base64Decode2ImageSource(str64);
 
 
                     }
@@ -271,10 +268,17 @@ namespace ExpenseT
             {
                 return new Command(async () =>
                 {
+
                     // Save DB     
                     // New INSERT record.  reverseInitValueEI.ID = 0        
 
                     ExpenseItem ei = reverseInitValueEI.expenseItem;
+
+                    if (ei.fPath == "")
+                    {
+                        await CoreMethods.DisplayAlert("Missing", "Photo Required", "OK");
+                        return;
+                    }
 
                     reverseInitValueEI.action = "NEW";
 
@@ -300,7 +304,7 @@ namespace ExpenseT
                     ei.ID = 0;    // 0 indicates NEW record.  INSERT.
 
                     // Convert image to string before saving to DB
-                    ei.strImage64 = Utils.Base64Encode2String(ei.fName);
+                    ei.strImage64 = Utils.Base64Encode2String(ei.fPath);
 
                     try
                     {
@@ -310,8 +314,7 @@ namespace ExpenseT
                             ei.ID = irc;
 
                         // Return Main
-
-                        //ei.strImage64 = "";   // Not needed. Clear and save memory. Retrieve from file or DB.   
+                        ei.strImage64 = "";   // Not needed. Clear and save memory. Retrieve from file or DB.   
 
                         await CoreMethods.PopPageModel(reverseInitValueEI, true, true);
                     }
@@ -319,11 +322,6 @@ namespace ExpenseT
                     {
                         await CoreMethods.DisplayAlert("Error", "DB Save failed. " + ex.Message, "Error");
                         return;
-                    }
-                    finally
-                    {
-                        ei.strImage64 = "";   // Not needed. Clear and save memory. Retrieve from file or DB.   
-
                     }
 
                 });
