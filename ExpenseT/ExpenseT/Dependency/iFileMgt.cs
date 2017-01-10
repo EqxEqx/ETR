@@ -8,11 +8,14 @@ namespace ExpenseT
 {
     public interface IFileMgt
     {
+        // Delete file
         Boolean Delete(string fName);
+
+        // Rename file
         Boolean Rename(string fCurrent, string fRename, out string fRenameFull);
 
-        // Convert image ( jpg ) to Base64String
-        //string Base64EncodeImage(string fNameImage);
+        // Convert image ( jpg ) to byte array
+        byte[] convertImage2ByteArray(string fName);
     }
 }
 

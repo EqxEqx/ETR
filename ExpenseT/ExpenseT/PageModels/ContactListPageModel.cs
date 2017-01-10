@@ -10,6 +10,7 @@ using System.Text;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
+using System.IO;
 
 namespace ExpenseT
 {
@@ -211,7 +212,7 @@ namespace ExpenseT
                             Directory = "Expense",
                             SaveToAlbum = false,
                             PhotoSize = Plugin.Media.Abstractions.PhotoSize.Small,
-                            Name = picName   
+                            Name = picName
                         });
 
                         if (file == null)
@@ -232,13 +233,24 @@ namespace ExpenseT
                          */
 
                         ei.fAlbumPath = file.AlbumPath;
-                        ei.fPath = file.Path;             
+                        ei.fPath = file.Path;
                         ei.fName = picName;  // filename: 2016113014120118.jpg 
 
                         file.Dispose();
+
+                        // Test 
                         ImageSource = ImageSource.FromFile(ei.fPath);
+
+                        //  ImageSource = ImageSource.FromStream(() => new MemoryStream(Convert.FromBase64String(str64)));
+                        
+
+
+                        string str64 = Utils.Base64Encode2String(ei.fPath);
+                        ImageSource = Utils.Base64Decode2ImageSource(str64);
+
+
                     }
-                    catch( Exception ex)
+                    catch (Exception ex)
                     {
                         await CoreMethods.DisplayActionSheet("Photo", ex.Message, "Error");
                     }
@@ -288,7 +300,7 @@ namespace ExpenseT
                     ei.ID = 0;    // 0 indicates NEW record.  INSERT.
 
                     // Convert image to string before saving to DB
-                    ei.strImage64 = Utils.Base64Encode(ei.fName);
+                    ei.strImage64 = Utils.Base64Encode2String(ei.fName);
 
                     try
                     {

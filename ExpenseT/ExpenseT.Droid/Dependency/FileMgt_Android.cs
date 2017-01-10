@@ -91,6 +91,52 @@ namespace ExpenseT
             }
         }
 
+        /// <summary>
+        /// Convert image file to byte array.
+        /// </summary>
+        /// <param name="fName">Path and filename</param>
+        /// <returns></returns>
+        public byte[] convertImage2ByteArray(string fName)
+        {
+
+            // http://stackoverflow.com/questions/37879437/convert-file-to-byte-array-given-its-path-in-local-storage
+
+            try
+            {
+                using (var streamReader = new System.IO.StreamReader(fName))
+                {
+                    using (var memoryStream = new MemoryStream())
+                    {
+                        streamReader.BaseStream.CopyTo(memoryStream);
+                        return( memoryStream.ToArray() );
+                    }
+
+                }
+            }
+            catch( Exception ex)
+            {
+                string eMsg = ex.Message;
+                return (null);
+            }
+        }
+
+
+
+        // http://stackoverflow.com/questions/17352061/fastest-way-to-convert-image-to-byte-array?noredirect=1&lq=1
+        public static byte[] ReadImageFile(string imageLocation)
+        {
+            byte[] imageData = null;
+            FileInfo fileInfo = new FileInfo(imageLocation);
+            long imageFileLength = fileInfo.Length;
+            FileStream fs = new FileStream(imageLocation, FileMode.Open, FileAccess.Read);
+            BinaryReader br = new BinaryReader(fs);
+            imageData = br.ReadBytes((int)imageFileLength);
+            return imageData;
+        }
+
+
+
+
         //public string Base64EncodeImage( string fName)
         //{
         //    try
