@@ -54,7 +54,7 @@ namespace ExpenseT
         {
             lock (locker)
             {
-                return database.Table<ExpenseItem>().FirstOrDefault(x => x.ID == id);
+                return database.Table<ExpenseItem>().FirstOrDefault(x => x.IDExp == id);
             }
         }
 
@@ -64,10 +64,10 @@ namespace ExpenseT
             {
                 try
                 {
-                    if (item.ID != 0)
+                    if (item.IDExp != 0)
                     {
                         database.Update(item);
-                        return item.ID;
+                        return item.IDExp;
                     }
                     else
                     {

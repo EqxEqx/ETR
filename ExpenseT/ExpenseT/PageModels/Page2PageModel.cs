@@ -58,7 +58,7 @@ namespace ExpenseT
                 LVCellList = new ObservableCollection<LVCell>();
 
 
-                //  IEnumerable<ExpenseItem> dbRecs = App.Database.GetItems();   // Returns DB Identity in expenseItem.ID or -1 if error
+                //  IEnumerable<ExpenseItem> dbRecs = App.Database.GetItems();   // Returns DB Identity in expenseItem.IDExp or -1 if error
 
                 LVCell lvc = null;
 
@@ -110,7 +110,7 @@ namespace ExpenseT
                 }
 
                 // DB Error
-                if( eItem.ID <= 0 )
+                if( eItem.IDExp <= 0 )
                 {
                     eMsg = string.Format("Error: {0} failed writing to database.", eItemA.action);
                     return;
@@ -144,7 +144,7 @@ namespace ExpenseT
                 }
 
                 //lvc.Header = string.Format("{0}, {1}, {2}, {3}, {4}, {5}, {6}",
-                //    eItem.ID, eItem.Name, eItem.Account,
+                //    eItem.IDExp, eItem.Name, eItem.Account,
                 //    eItem.Category, eItem.Category2, eItem.Description, eItem.Amount);
 
                 //lvc.Detail = string.Format("{0}, {1}", eItem.fName, eItem.fPath);
@@ -165,7 +165,7 @@ namespace ExpenseT
             {
                 lvc.Header = string.Format("{0}, {1}, {2}, {3}, {4}, {5}, {6}",
                      eItem.Name, eItem.ExpenseDate, eItem.Amount, eItem.Account,
-                     eItem.Category, eItem.Category2, eItem.ID);
+                     eItem.Category, eItem.Category2, eItem.IDExp);
 
                 lvc.Detail = string.Format("{0}, {1}, {2}", eItem.Description, eItem.fName, eItem.fPath);
 
@@ -220,7 +220,7 @@ namespace ExpenseT
                 eItem.Account = header[3].Trim();
                 eItem.Category = header[4].Trim();
                 eItem.Category2 = header[5].Trim();
-                eItem.ID = Convert.ToInt32(header[6].Trim());
+                eItem.IDExp = Convert.ToInt32(header[6].Trim());
 
                 // Line 2
                 eItem.Description = detail[0].Trim();
@@ -361,7 +361,7 @@ namespace ExpenseT
         //                List<ExpenseItem> xx = iei.ToList<ExpenseItem>();
 
         //                LVCell lvc = new LVCell();
-        //                lvc.Header = xx[0].ID.ToString();
+        //                lvc.Header = xx[0].IDExp.ToString();
         //                lvc.Detail = "ieiDetail";
 
         //                LVCellList.Add(lvc);
@@ -386,7 +386,7 @@ namespace ExpenseT
         //    {
         //        ExpenseItem ei = new ExpenseItem();
 
-        //        ei.ID = 0;
+        //        ei.IDExp = 0;
         //        ei.Name = "Jim";
         //        ei.Account = "Account";
         //        ei.Category = "Category";

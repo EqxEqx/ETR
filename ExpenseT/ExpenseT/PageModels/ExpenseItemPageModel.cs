@@ -139,7 +139,7 @@ namespace ExpenseT
                 return new Command(async () =>
                 {
 
-                    int numDeleted = App.Database.DeleteItem(expenseItemAction.expenseItem.ID);   // -1 if Error
+                    int numDeleted = App.Database.DeleteItem(expenseItemAction.expenseItem.IDExp);   // -1 if Error
 
                     if( numDeleted <= 0 )
                     {
@@ -231,8 +231,8 @@ namespace ExpenseT
 
                     expenseItem.strImage64 = Utils.Base64Encode2String(expenseItem.fPath);
 
-                    //expenseItem.ID > 0 indicate UPDATE
-                    expenseItem.ID = App.Database.SaveItem(expenseItem);   // -1 if Error
+                    //expenseItem.IDExp > 0 indicate UPDATE
+                    expenseItem.IDExp = App.Database.SaveItem(expenseItem);   // -1 if Error
 
                     expenseItem.strImage64 = "";    // Not needed.
 
@@ -262,7 +262,7 @@ namespace ExpenseT
                             expenseItem.Name, expenseItem.Account, expenseItem.ExpenseDate, expenseItem.Amount, expenseItem.Category, expenseItem.Category2);
 
                         string msg = string.Format("{0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, {8}",
-                            expenseItem.ID, expenseItem.Name, expenseItem.Account, expenseItem.Category, expenseItem.Category2,
+                            expenseItem.IDExp, expenseItem.Name, expenseItem.Account, expenseItem.Category, expenseItem.Category2,
                             expenseItem.ExpenseDate, expenseItem.Amount, expenseItem.Description, expenseItem.fName);
 
                         IEmailMessage email;

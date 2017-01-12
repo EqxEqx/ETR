@@ -270,7 +270,7 @@ namespace ExpenseT
                 {
 
                     // Save DB     
-                    // New INSERT record.  reverseInitValueEI.ID = 0        
+                    // New INSERT record.  reverseInitValueEI.IDExp = 0        
 
                     ExpenseItem ei = reverseInitValueEI.expenseItem;
 
@@ -301,17 +301,17 @@ namespace ExpenseT
 
                     ei.CreatedDate = DateTime.Now.ToString("yyyy-MM-dd");
 
-                    ei.ID = 0;    // 0 indicates NEW record.  INSERT.
+                    ei.IDExp = 0;    // 0 indicates NEW record.  INSERT.
 
                     // Convert image to string before saving to DB
                     ei.strImage64 = Utils.Base64Encode2String(ei.fPath);
 
                     try
                     {
-                        int irc = App.Database.SaveItem(reverseInitValueEI.expenseItem);   // Returns DB Identity in expenseItem.ID or -1 if error
+                        int irc = App.Database.SaveItem(reverseInitValueEI.expenseItem);   // Returns DB Identity in expenseItem.IDExp or -1 if error
 
                         if (irc <= 0)
-                            ei.ID = irc;
+                            ei.IDExp = irc;
 
                         // Return Main
                         ei.strImage64 = "";   // Not needed. Clear and save memory. Retrieve from file or DB.   

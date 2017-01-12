@@ -9,7 +9,7 @@ namespace ExpenseT
     {
 
         [PrimaryKey, AutoIncrement]
-        public int ID { get; set; }
+        public int IDExp { get; set; }
         public string Name { get; set; }
         public string Account { get; set; }    // SF, DC, NY
         public string Category { get; set; }   // Mgt, Travel
@@ -35,7 +35,7 @@ namespace ExpenseT
 
         public void Clear()
         {
-            ID = 0;
+            IDExp = 0;
             Name = "";
             Account = "";
             Category = "";
